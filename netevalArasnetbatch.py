@@ -42,7 +42,6 @@ def biasVarianceFc(net,feature,target,nClass,ns,device):
 
     Ez   = F.softmax(tempEz, dim=1).data
     Bias = torch.mean((Ez-target)**2,dim=0)
-    print(Bias)
     bias = LA.norm(Bias.cpu())
 
     # for VAR calculation
@@ -54,7 +53,7 @@ def biasVarianceFc(net,feature,target,nClass,ns,device):
 
     Ez2 = F.softmax(tempEz, dim=1).data
     Var = torch.mean(Ez2-Ez**2,dim=0)
-    variance = LA.norm(Var)
+    variance = LA.norm(Var.cpu())
 
     #pdb.set_trace()
 
