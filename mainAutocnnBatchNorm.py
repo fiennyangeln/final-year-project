@@ -217,7 +217,7 @@ def autocnn2(x_train, y_train, x_val, y_val, x_test, y_test, no_of_epoch, gpu = 
             ns.trGrad        = False
             maxTrError       = 0
             minTrError       = 100
-        elif countCNNtraining > 100 and ns.prevTrError > error_preTrain and mode == 1:
+        elif countCNNtraining > 10 and ns.prevTrError > error_preTrain and mode == 1:
             growCNNLayer = 0
             print("*******************Minimum Error Threshold REACHED**********************")
             mode = 2
@@ -227,7 +227,7 @@ def autocnn2(x_train, y_train, x_val, y_val, x_test, y_test, no_of_epoch, gpu = 
             ns.trGrad        = False
             maxTrError       = 0
             minTrError       = 100
-        elif (countCNNtraining > 100 and ns.prevTrError <= error_preTrain and mode == 1) or (ns.trGrad and mode == 1):
+        elif (countCNNtraining > 10 and ns.prevTrError <= error_preTrain and mode == 1) or (ns.trGrad and mode == 1):
             growCNNLayer = 0
             print("*******************Minimum Error Threshold NOT Reached**********************")
             print("*******************Optimize CNN for 10 epochs: started**********************")
