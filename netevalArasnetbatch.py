@@ -65,14 +65,14 @@ def evaluationWindow(F_matrix,alpha,cuttingpoint,ns):
     growLayer = 0
     sizeF = len(F_matrix)
     cuttingCandidate = [int(0.25*sizeF),int(0.5*sizeF),int(0.75*sizeF)]
-    F_max = np.max(np.array(F_matrix))
-    F_min = np.min(np.array(F_matrix))
-    miu_F = np.mean(np.array(F_matrix.double()))
+    F_max = np.max(np.array(F_matrix.cpu()))
+    F_min = np.min(np.array(F_matrix.cpu()))
+    miu_F = np.mean(np.array(F_matrix.cpu().double()))
     if ns.currTrainingError < ns.prevTrainingError and ns.growFCcounter > 3:
         for cut in cuttingCandidate:
-            G_max = np.max(np.array(F_matrix[0:cut]))
-            G_min = np.min(np.array(F_matrix[0:cut]))
-            miu_G = np.mean(np.array(F_matrix[0:cut].double()))
+            G_max = np.max(np.array(F_matrix.cpu()[0:cut]))
+            G_min = np.min(np.array(F_matrix.cpu()[0:cut]))
+            miu_G = np.mean(np.array(F_matrix.cpu()[0:cut].double()))
             
             epsilon_G = (G_max-G_min)*np.sqrt(((cut)/(2*cut*sizeF)*np.log(1/alpha)))
             epsilon_F = (F_max-F_min)*np.sqrt(((sizeF)/(2*cut*sizeF)*np.log(1/alpha)))
